@@ -4,32 +4,18 @@ let obj1 = {
   qux: 3,
 };
 
-/* --------------------------> Trying to manually copy objects
 const cp = (obj, keys) => {
   let nObj = {};
-  if (!keys) {
-    let objKeys = Object.keys(obj);
-    for (let i=0; i < objKeys.length; i++) {
-      console.log(objKeys[i]);
-      let key = objKeys[i];
-      nObj.key = obj[objKeys[i]];
-      console.log(nObj);
-    }
-  } else {
-    for (let key in keys) {
-      nObj.key = obj.key;
-    }
-  }
-  console.log(nObj);
-  return nObj;
-}
-*/
-const cp = (obj, keys) => {
-  let nObj = {};
+  let flag = 0;
+
   if (!keys) {
     Object.assign(nObj, obj);
     return nObj;
-  }
+  } else if (keys) {
+    for (let index in keys) {
+      nObj[keys[index]] = obj[keys[index]];
+    }
+  } return nObj;
 }
 
 let newObj1 = cp(obj1);
