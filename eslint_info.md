@@ -12,7 +12,7 @@ $ npm install eslint@7.12.1 eslint-cli babel-eslint --save-dev
 
 1. Create a file '.eslintrc.yml'
 2. Fill it with the following:
-```javascript
+```yaml
 # Last update: 26 Feb 2022
 root: true
 parser: babel-eslint
