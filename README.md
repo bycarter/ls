@@ -1,6 +1,6 @@
 This is my repo for everything Launch School.
 
-###Timeline
+### Timeline
 | Course   | Date          | Days |
 |----------|:-------------:|:----:|
 | JS 100   | 2022, July 21 | 14   |
