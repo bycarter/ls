@@ -53,8 +53,8 @@ while (true) {
     }
   }
 
-  prompt('Do you want to play another match (y/n)? ');
-  let again = rlSync.question().toLowerCase();
+  prompt('Do you want to play another match? (y/n) ');
+  let again = rlSync.question('~~> ').toLowerCase();
 
   while (again[0] !== 'y' && again[0] !== 'n') {
     prompt('Please enter "y" or "n".');
