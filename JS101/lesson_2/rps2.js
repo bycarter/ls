@@ -14,29 +14,41 @@ while (true) {
   console.clear();
   prompt('Welcome to Rock Paper Scissors Lizard Spock');
   prompt(''); // line break for aesthetics
-  // call displayRules
 
   let match = 1;
-  let userScore;
-  userScore = 0;
+  let userScore = 0;
   let computerScore = 0;
 
   while (true) {
     prompt(`MATCH ${match}`);
+    prompt(`Choose One: ${VALID_CHOICES.join(', ')}`);
+    prompt("Pst... you may enter the first letter, or 'k' for spock!");
+    let choice = rlSync.question('~~> ');
 
-    let choice = promptUserForChoice();
-    let computerChoice = computerMakesChoice();
+    while ((!VALID_CHOICES.includes(choice)) &&
+    (!VALID_CHOICES_SHORT.includes(choice))) {
+      prompt("That's not a valid choice");
+      prompt(`Choose One: ${VALID_CHOICES.join(', ')}`);
+      prompt("Pst... you may enter the first letter, or 'k' for spock!");
+      choice = rlSync.question('~~>');
+    }
+    choice = resolveUserInput(choice);
+
+    let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+    let computerChoice = VALID_CHOICES[randomIndex];
 
     prompt(`You chose ${choice}, computer chose ${computerChoice}`);
     displayWinner(choice, computerChoice);
 
-    // cannot refactor logic into updateScores, scores are scoped in l:13 while loop
-    updateScores(choice, computerChoice);
+    if (playerWins(choice, computerChoice)) {
+      userScore += 1;
+    } else if (playerWins(computerChoice, choice)) {
+      computerScore += 1;
+    }
     displayScore(userScore, computerScore);
 
     console.log(); // line break for aesthetics
     match += 1;
-    // cannot refactor logic into updateScores, scores are scoped in l:13 while loop
     if (match === NUMBER_OF_MATCHES) {
       displayGrandWinner(userScore, computerScore);
       break;
@@ -58,21 +70,6 @@ while (true) {
 function prompt(msg) {
   console.log(`~~> ${msg}`);
 }
-function promptUserForChoice() {
-  prompt(`Choose One: ${VALID_CHOICES.join(', ')}`);
-  prompt("Pst... you may enter the first letter, or 'k' for spock!");
-  let userInput = rlSync.question('~~> ');
-
-  while ((!VALID_CHOICES.includes(userInput)) &&
-  (!VALID_CHOICES_SHORT.includes(userInput))) {
-    prompt("That's not a valid userInput");
-    prompt(`Choose One: ${VALID_CHOICES.join(', ')}`);
-    prompt("Pst... you may enter the first letter, or 'k' for spock!");
-    userInput = rlSync.question('~~>');
-  }
-  userInput = resolveUserInput(userInput);
-  return userInput;
-}
 function resolveUserInput(choiceIn) {
   let result = choiceIn;
 
@@ -85,17 +82,6 @@ function resolveUserInput(choiceIn) {
   }
   return result;
 }
-function computerMakesChoice() {
-  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-  return VALID_CHOICES[randomIndex];
-}// ~~~~~~~~~~~~~~~~~>>>>>>>>>><<<<<<<<<<<<<<<<
-function updateScores (choiceIn, computerChoiceIn) {
-  if (playerWins(choiceIn, computerChoiceIn)) {
-    userScore += 1;
-  } else if (playerWins(computerChoiceIn, choiceIn)) {
-    computerScore += 1;
-  }
-}// ~~~~~~~~~~~~~~~~~>>>>>>>>>><<<<<<<<<<<<<<<<
 function playerWins(choice, computerChoice) {
   return WINNING_COMBOS[choice].includes(computerChoice);
 }
@@ -120,7 +106,5 @@ function displayGrandWinner(userIn, computerIn) {
     prompt('Match is a TIE!!');
   }
 }
-function someoneOne() {
-  return match === TOTAL_MATCHES;
-}
-function displayRules() {};
+function displayRules() {
+
