@@ -20,7 +20,6 @@ function stringToInteger(str) {
       if (num == str[vals]) {
         len -= 1;
         tempNum += (num * (10 ** len));
-        console.log(`vals: ${vals}  num: ${num}  tempNum: ${tempNum}`);
       }
     }
   }
