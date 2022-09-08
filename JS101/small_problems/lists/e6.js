@@ -1,18 +1,18 @@
 // input: str
-// output: array of substrings
+// output: array of palindromic substrings
 // rules:
 //  list all substrings
 //  arange them first by starting letters index, then by size
+//  filter for only palindromic substrings
 // data s: array
 // algo:
-//  declare `arrOut` init []
-//  iterate over length of array
-//    slice elements from loop index to end
-//    declare `substrArr' init to [];
-//    feed into `leadingSubstrings`
-//    iterate over `substrArr`
-//      push each item into `arrOut`
-//  return `arrOut`
+//  create array of substrings
+//  declare `palArr` init []
+//  declare `allSubstr` init return value of `substrings`
+//  filter `allSubstr` for palindromes
+//    loop over `allSubstr`
+//      iterate through each substring
+//      if palindrome, push to `palArr`
 
 function leadingSubstrings(str) {
   let arrOut = [];
@@ -27,16 +27,31 @@ function substrings(str) {
     let subArr = leadingSubstrings(str.slice(i));
     subArr.forEach( item => arrOut.push(item) );
   }
-  return console.log(arrOut);
+  return arrOut;
+}
+function palindromes(str) {
+  let palArr = [];
+  let allSubstr = substrings(str);
+  for (let substr of allSubstr) {
+    if (substr.length < 2) {
+      continue;
+    } else if (substr === substr.split('').reverse().join('')) {
+      palArr.push(substr);
+    }
+  }
+  console.log(palArr);
 }
 
 //  tests:
-substrings('abcde');
+palindromes('abcd');       // []
+palindromes('madam');      // [ "madam", "ada" ]
 
-/* returns
-[ "a", "ab", "abc", "abcd", "abcde",
-  "b", "bc", "bcd", "bcde",
-  "c", "cd", "cde",
-  "d", "de",
-  "e" ]
-*/
+palindromes('hello-madam-did-madam-goodbye');
+// returns
+// [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+//   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+//   "-madam-", "madam", "ada", "oo" ]
+
+palindromes('knitting cassettes');
+// returns
+// [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
