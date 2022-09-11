@@ -9,7 +9,14 @@
 
 // TODO - refactor map and use new method / logic
 function buyFruit(arr) {
-  return arr.map( item => item[0]);
+  let temp = arr.flat();
+  let arrOut = [];
+  for (let i = 0; i < temp.length; i += 2) {
+    for (let j = 0; j < temp[i + 1]; j+= 1) {
+      arrOut.push(temp[i]);
+    }
+  }
+  return arrOut;
 }
 
 // tests:
