@@ -19,7 +19,13 @@
 //  return `subArr1`
 
 function rotateRightmostDigits(num1, num2) {
-
+  let numArr = String(num1).split('');
+  let mid = num1.length - num2;
+  //let subArr1 = numArr.slice(0, mid);
+  let subArr2 = numArr.slice(mid);
+  let temp = subArr2.shift();
+  return console.log(numArr.slice(0, mid) + subArr2.pop(temp));
+}
 
 // tests:
 rotateRightmostDigits(735291, 1);      // 735291
