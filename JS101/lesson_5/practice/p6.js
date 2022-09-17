@@ -10,7 +10,7 @@ let munsters = {
 };
 
 function displayMuns(obj) {
-  for (mun of Object.keys(obj)) {
+  for (let mun of Object.keys(obj)) {
     let strOut = `${mun} is a ${obj[mun]['age']}-year-old ${obj[mun]['gender']}`;
     console.log(strOut);
   }

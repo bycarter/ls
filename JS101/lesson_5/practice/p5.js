@@ -20,7 +20,7 @@ function sumAge(obj) {
   let sumAge = 0;
   let keyArr = Object.keys(obj);
 
-  for (key of keyArr) {
+  for (let key of keyArr) {
     if (obj[key].gender === 'male') {
       sumAge += obj[key].age;
     }

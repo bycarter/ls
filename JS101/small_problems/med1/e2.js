@@ -2,9 +2,9 @@
 // output: number
 // data s: array
 // rules:
-//  rotate the nunber of digits in `num1` by the number in `num2`
+//  rotate the number of digits in `num1` by the number in `num2`
 //  a rotation
-//    cuts a subString of digits of len `num2'
+//    cuts a subString of digits of len `num2' from right end of `num1`
 //    removes the first char and appends to end
 //    concatenates subStr back onto initial string
 // algo:
@@ -19,12 +19,15 @@
 //  return `subArr1`
 
 function rotateRightmostDigits(num1, num2) {
+  if (num2 === 1) return console.log(String(num1));
+
   let numArr = String(num1).split('');
-  let mid = num1.length - num2;
-  //let subArr1 = numArr.slice(0, mid);
+  let mid = numArr.length - num2;
   let subArr2 = numArr.slice(mid);
   let temp = subArr2.shift();
-  return console.log(numArr.slice(0, mid) + subArr2.pop(temp));
+  subArr2.push(temp);
+
+  return console.log(numArr.slice(0, mid).join('') + subArr2.join(''));
 }
 
 // tests:
