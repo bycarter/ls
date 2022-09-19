@@ -2,33 +2,62 @@ const RL = require('readline-sync');
 const INITIAL_MARKER = ' ';
 const HUMAN_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
-
+const MATCH_SIZE = 5;
+const WINNING_LINES = [
+    [1, 2, 3], [4, 5, 6], [7, 8, 9],
+    [1, 4, 7], [2, 5, 8], [3, 6, 9],
+    [1, 5, 9], [3, 5, 7]
+  ];
 
 while (true) {
-  let board = initializeBoard();
+  let score = {'Player': 0, 'Computer': 0, 'Game': 1};
 
   while (true) {
+    let board = initializeBoard();
+
+    while (true) {
+      displayBoard(board);
+      
+      playerChoosesSquare(board);
+      if (someoneWon(board) || boardFull(board)) break;
+
+      computerChoosesSquare(board);
+      if (someoneWon(board) || boardFull(board)) break;
+    }
+
     displayBoard(board);
-    
-    playerChoosesSquare(board);
-    if (someoneWon(board) || boardFull(board)) break;
 
-    computerChoosesSquare(board);
-    if (someoneWon(board) || boardFull(board)) break;
-
+    if (someoneWon(board)) {
+      score[detectWinner(board)] += 1;
+      prompt(`${detectWinner(board)} won!`);
+      prompt(`Player Score:   ${score['Player']}`);
+      prompt(`Computer Score: ${score['Computer']}`);
+      prompt(`Game Number:    ${score['Game']}`);
+      score['Game'] += 1;
+    } else {
+      prompt(`It's a tie!`);
+      prompt(`Player Score:   ${score['Player']}`);
+      prompt(`Computer Score: ${score['Computer']}`);
+      prompt(`Game Number:    ${score['Game']}`);
+      score['Game'] += 1;
+    }
+    if (detectMatchWinner('Player', score)
+      || detectMatchWinner('Computer', score)) {
+      break;
+    }
+    prompt('');
+    prompt('Play another Game? (y or n)');
+    let answer = RL.question().toLowerCase()[0];
+    if (answer !== 'y') break;
   }
-  displayBoard(board);
-
-  if (someoneWon(board)) {
-    prompt(`${detectWinner(board)} won!`);
-  } else {
-    prompt("It's a tie!");
+  if (detectMatchWinner('Player', score)
+    || detectMatchWinner('Computer', score)) {
+    prompt(`${detectMatchWinner('Player', score) ? 'Player' : 'Computer'} won MATCH!`);
   }
-  prompt('Play again? (y or n)');
+  prompt('Play another Match? (y or n)');
   let answer = RL.question().toLowerCase()[0];
   if (answer !== 'y') break;
 }
-
 
 
 function displayBoard(obj) {
@@ -60,18 +89,30 @@ function playerChoosesSquare(obj) {
   let square;
 
   while (true) {
-    prompt(`Choose a square ${emptySquares(obj).join(', ')}:`);
+    prompt(`Choose a square ${joinOr(emptySquares(obj))}:`);
     square = RL.question().trim();
     
     if (emptySquares(obj).includes(square)) break;
     prompt('Not a valid choice.');
   }
-    board[square] = HUMAN_MARKER;
+  obj[square] = HUMAN_MARKER;
 }
 function computerChoosesSquare(obj) {
   let randomIndex = Math.floor(Math.random() * emptySquares(obj).length);
   let square = emptySquares(obj)[randomIndex];
-  obj[square] = COMPUTER_MARKER;
+  
+  if (detectWinningSquare(obj, COMPUTER_MARKER)) {
+    obj[detectWinningSquare(obj, COMPUTER_MARKER)] = COMPUTER_MARKER;
+    return;
+  } else if (detectWinningSquare(obj, HUMAN_MARKER)) {
+    obj[detectWinningSquare(obj, HUMAN_MARKER)] = COMPUTER_MARKER;
+    return;
+  } else if (obj['5'] === INITIAL_MARKER) {
+    obj[5] = COMPUTER_MARKER;
+    return;
+  } else {
+    obj[square] = COMPUTER_MARKER;
+  }
 }
 function emptySquares(obj) {
   return Object.keys(obj).filter(key => obj[key] === INITIAL_MARKER);
@@ -86,14 +127,8 @@ function someoneWon(obj) {
   return !!detectWinner(obj);
 }
 function detectWinner(obj) {
-  let winningLines = [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9],
-    [1, 4, 7], [2, 5, 8], [3, 6, 9],
-    [1, 5, 9], [3, 5, 7]
-  ];
-
-  for (let line = 0; line < winningLines.length; line++) {
-    let [ sq1, sq2, sq3 ] = winningLines[line];
+  for (let line = 0; line < WINNING_LINES.length; line++) {
+    let [ sq1, sq2, sq3 ] = WINNING_LINES[line];
 
     if (
       obj[sq1] === HUMAN_MARKER &&
@@ -113,3 +148,35 @@ function detectWinner(obj) {
   return null;
 }
 
+// °º¤ø,¸¸,ø¤º°`°º¤ø,¸ Bonus Features ¸,ø¤º°`°º¤ø,,ø¤°º
+
+function joinOr(arr, delim = ', ', word = 'or') {
+  if (arr.length < 2) {
+    return String(arr);
+  }
+  if (arr.length === 2) {
+      return `${String(arr[0])} ${word} ${String(arr[1])}`;
+  }
+  let strOut = '';
+  arr.forEach((item, idx) => {
+    if (idx !== arr.length -1) {
+      strOut += `${String(item)}${delim}`;
+    } else {
+      strOut += `${word} ${String(item)}`;
+    }
+  });
+  return strOut;
+}
+function detectMatchWinner(player, scoreObj) {
+  return scoreObj[player] === MATCH_SIZE;
+}
+function detectWinningSquare(obj, MARKER) {
+  for (let item of WINNING_LINES) {
+    let filledSquares = item.filter(num => obj[num] === MARKER);
+    let emptySquares = item.filter(num => obj[num] === INITIAL_MARKER);
+    if (filledSquares.length === 2 && emptySquares.length === 1) {
+      return emptySquares[0];
+    }
+  }
+  return null;
+}
