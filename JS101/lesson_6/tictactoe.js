@@ -9,24 +9,22 @@ const WINNING_LINES = [
     [1, 5, 9], [3, 5, 7]
   ];
 
+
 while (true) {
   let score = {'Player': 0, 'Computer': 0, 'Game': 1};
+  let currentPlayer = RL.question('Who starts the match (computer or player)?');
 
   while (true) {
     let board = initializeBoard();
 
     while (true) {
       displayBoard(board);
-      
-      playerChoosesSquare(board);
+      chooseSquare(board, currentPlayer);
       if (someoneWon(board) || boardFull(board)) break;
-
-      computerChoosesSquare(board);
-      if (someoneWon(board) || boardFull(board)) break;
+      currentPlayer = alternatePlayer(currentPlayer);
     }
 
     displayBoard(board);
-
     if (someoneWon(board)) {
       score[detectWinner(board)] += 1;
       prompt(`${detectWinner(board)} won!`);
@@ -179,4 +177,17 @@ function detectWinningSquare(obj, MARKER) {
     }
   }
   return null;
+}
+function chooseSquare(obj, currentPlayer) {
+  if (currentPlayer === 'player') {
+    playerChoosesSquare(obj);
+    return;
+  } else {
+    computerChoosesSquare(obj);
+    return;
+  }
+}
+function alternatePlayer(player) {
+  if (player === 'player') return 'computer';
+  return 'player';
 }
