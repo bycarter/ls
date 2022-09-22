@@ -13,40 +13,53 @@ while (true) {
   let deck = createDeck(fullDeck);
   let computerHand = [];
   let playerHand = [];
+  let playerScore = total(playerHand); // cache
+  let computerScore = total(computerHand); // cache
 
   shuffle(deck);
   deal(deck, playerHand, computerHand);
-  displayHandsSimple(playerHand, computerHand);
+  displayHands(playerHand, computerHand);
 
   current:
   while (true) {
 
+    // player
     while (true) {
       console.log('');
       let answer = RL.question('hit or stay? ');
+      playerScore = total(playerHand); // cache
       if (answer === 'stay') break;
 
       hitHand(deck, playerHand);
-      displayHandsSimple(playerHand, computerHand);
+      displayHands(playerHand, computerHand);
 
-      if (busted(playerHand)) {
-        console.log('BUST!');
+      playerScore = total(playerHand); // cache
+      if (busted(playerScore)) {
+        console.log('YOU BUST!');
         break current;
       }
     }
 
+    // dealer
     while (true) {
-      console.log(computerHand);
-      if (total(computerHand) < 17) {
+      computerScore = total(computerHand); // cache
+      if (computerScore < 17) {
         hitHand(deck, computerHand);
-        displayHandsSimple(playerHand, computerHand, false);
+        displayHands(playerHand, computerHand, false);
+      } else if (computerScore > 21) {
+        console.log('DEALER BUST!');
+        console.log('');
+        console.log('You won!!');
+        break current;
       } else {
-        displayHandsSimple(playerHand, computerHand, false);
+        displayHands(playerHand, computerHand, false);
         break;
       }
     }
+
     console.log('');
-    console.log(displayWinner(playerHand, computerHand));
+    console.log(displayWinner(playerScore, computerScore));
+    console.log(`player: ${playerScore}, dealer: ${computerScore}`);
 
     break;
   }
@@ -56,12 +69,11 @@ while (true) {
 }
 
 
-function displayWinner(playerHandIn, computerHandIn) {
-  let playerScore = total(playerHandIn);
-  let computerScore = total(computerHandIn);
-  if (playerScore > computerScore) {
+function displayWinner(playerScoreIn, computerScoreIn) {
+
+  if (playerScoreIn > computerScoreIn) {
     return 'You won!!';
-  } else if (computerScore > playerScore) {
+  } else if (computerScoreIn > playerScoreIn) {
     return 'Dealer won!!';
   } else {
     return 'It\'s a tie!';
@@ -72,7 +84,7 @@ function hitHand(deckIn, handIn) {
   deckPop = deckIn.pop();
   handIn.push(deckPop);
 }
-function displayHandsSimple(playerHandIn, computerHandIn, hidden = true) {
+function displayHands(playerHandIn, computerHandIn, hidden = true) {
   console.clear();
   if (hidden) {
     if (computerHandIn[0][1] === 10) {
@@ -138,8 +150,8 @@ function total(handIn) {
 
   return sum;
 }
-function busted(handIn) {
-  if (total(handIn) <= 21) {
+function busted(scoreIn) {
+  if (scoreIn <= 21) {
     return false;
   }
   return true;
