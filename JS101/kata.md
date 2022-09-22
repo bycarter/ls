@@ -1,5 +1,6 @@
-#### list of the Codewars Kata I've done
+#### List of the Codewars Kata I've done
 
-| kyu | Name            |
-|:---:|:---------------:|
-|  5  | Pete, the baker |
+| kyu | Name                   |
+|:---:|:----------------------:|
+|  5  | Pete, the baker        |
+|  6  | Find the unique number |
