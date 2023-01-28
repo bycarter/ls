@@ -477,7 +477,7 @@ console.log(copyObj);
 
 USED
 ```javascript
-let newKey = ‘stops`;
+let newKey = 'stops';
 let obj = { turns: 3, lights: 6 };
 
 obj.newKey = 8;
