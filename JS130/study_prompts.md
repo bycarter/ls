@@ -9,3 +9,28 @@
 > - Make two calculations in one traversal
 > - map and filter in one pass
 > - Run asynchronous functions in sequence
+
+
+## LESSON 2
+#### The `var` Keyword
+> Explain scoping differences between `var` and `let` / `const`
+> - What happens when variables are declared at the top-level?
+#### Advanced Scope
+> Give an example which shows:
+> - local vs global scope
+> - inner vs outer scope
+> 
+#### Modules
+> List the 4 main benefits of using modules
+> - Less entangled Code
+> - Re-usable Pieces
+> - Helps prevent ripple effects in large programs
+> - Easier to Encapsulate & Create Private Data
+
+> Implement a CommonJS module with these specs:
+> - import a function, variable, and class into a `main` file
+> - create private data in the module
+> - use destructuring assignment
+
+> Compare CommonJS and JS Module syntax
+> -
