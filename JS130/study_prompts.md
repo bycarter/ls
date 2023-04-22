@@ -33,4 +33,5 @@
 > - use destructuring assignment
 
 > Compare CommonJS and JS Module syntax
-> -
+> - outline key syntax differences
+> - list benefits of JS modules
