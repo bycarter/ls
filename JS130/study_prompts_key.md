@@ -21,18 +21,22 @@
 > - local vs global scope
 > - inner vs outer scope
 > - function vs block scope
-> 
+>
 > What 5 keywords create declared scope? What type of scope for each?
-> 
+>
 > What are the 3 frames of reference of scope?
 
 #### Hoisting
 > What are the two phases of hoisting?
-> 
-> 
+>
+>
 
 #### Modules
 > List the 4 main benefits of using modules
+> - Less entangled Code
+> - Re-usable Pieces
+> - Helps prevent ripple effects in large programs
+> - Easier to Encapsulate & Create Private Data
 
 > Implement a CommonJS module with these specs:
 > - import a function, variable, and class into a `main` file
