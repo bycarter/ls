@@ -8,7 +8,7 @@ JS practice prompts for JS120
 > What is execution context and how are functions given implicit context?
 >- Show example of all 3 ways.
 
-> Explain the difference (with illustrations) between:
+> Explain the difference (with examples) between:
 >- object prototypes
 >- the function prototype
 >- prototype
@@ -36,3 +36,5 @@ JS practice prompts for JS120
 
 
 > *Use `super` in an OLOO subtype
+
+// UM counter: 1
