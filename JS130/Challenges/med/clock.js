@@ -1,13 +1,3 @@
-/*
-rules:
--Two clock objects that represent the same time should be equal to each other.
--- static property `clocks` holds all created clock objects
--- if clock with time exists
--static `at` creates a new clock unless already exists
--helper `findClock` looks for clock in `clocks`
--- return found clock, else new clock
- */
-
 class Clock {
   constructor(hour = 0, min = 0) {
     this.hour = Clock._numToString(hour);
@@ -29,8 +19,6 @@ class Clock {
     return false;
   }
   static _convertTime(currentTime, minIn, sym) {
-    //STUB
-
     let hours = currentTime[0] + currentTime[1];
     let min = currentTime[3] + currentTime[4];
     let [ hourOut, minOut ] = ['', ''];
@@ -38,11 +26,12 @@ class Clock {
       let totMin = Number(min) + minIn;
       if (totMin < 60) {
         minOut = totMin;
+        hourOut = hours;
       } else {
         let overHours = Math.floor(totMin / 60);
         minOut = totMin % 60;
         let totHours = overHours + Number(hours);
-        while (totHours > 24) {
+        while (totHours >= 24) {
           totHours -= 24;
         }
         hourOut = totHours;
@@ -51,6 +40,7 @@ class Clock {
       let totMin = Number(min) - minIn;
       if (totMin > 0) {
         minOut = totMin;
+        hourOut = hours;
       } else {
         let underHours = Math.abs(Math.floor(totMin / 60));
         minOut = Math.abs(totMin) === 60 ? 0 : 60 - Math.abs(totMin % 60);
@@ -73,9 +63,11 @@ class Clock {
   subtract(minIn) {
     return Clock._convertTime(this.toString(), minIn, '-');
   }
-
+  isEqual(clockin) {
+    return this === clockin;
+  }
 }
 
-console.log(Clock.at(1, 1).toString());
-console.log(Clock.at(1, 1).subtract(300).toString());
+module.exports = Clock;
+let c = Clock.at(10);
 console.log(Clock._clocks)

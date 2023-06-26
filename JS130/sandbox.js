@@ -1,15 +1,7 @@
-let arr = [1, 2, 3, 4];
+foo();
 
-// Array.prototype.forEach
-arr.forEach(value => console.log(value * value));
+let foo = 'steve';
 
-// Our forEach function
-forEach(arr, value => console.log(value * value));
-
-function forEach(arr, callb, context) {
-  for (let elem of arr) {
-    callb.call(context, elem);
-  }
+function foo() {
+  console.log('func');
 }
-
-forEach
