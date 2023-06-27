@@ -1,7 +1,11 @@
-foo();
+console.log(foo); // logs `[Function: foo]`
 
-let foo = 'steve';
+var foo = 6; // treated as a reassignment
+
+console.log(foo); // logs 6
 
 function foo() {
-  console.log('func');
+  console.log();
 }
+
+console.log(foo); //
