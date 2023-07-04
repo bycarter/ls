@@ -1,10 +1,22 @@
-foo();
-function foo() {
-  console.log("I'm logged to the console");
-}
-foo();
 
-function foo() {
-  console.log('Muhaha who is the true `foo`?');
+Account.prototype.init;
+
+const Account = (function() {
+  function anonymize() {}
+  return {
+    init(emailIn, passIn, firstIn, lastIn) {
+      this.email = emailIn;
+      this.passIn
+      return this;
+  }
+});
+
+init(email) {
+  let myEmail = email;
+  return (function() {
+    return {
+      this
+    }
+  }
+  })
 }
-foo(); // the second foo is treated like a reassignment;
