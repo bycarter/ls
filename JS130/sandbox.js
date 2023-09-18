@@ -1,22 +1,5 @@
+let message = 'hi';
 
-Account.prototype.init;
+let f = new Function('console.log(`${message}`)');
 
-const Account = (function() {
-  function anonymize() {}
-  return {
-    init(emailIn, passIn, firstIn, lastIn) {
-      this.email = emailIn;
-      this.passIn
-      return this;
-  }
-});
-
-init(email) {
-  let myEmail = email;
-  return (function() {
-    return {
-      this
-    }
-  }
-  })
-}
+f();  // ReferenceError: message is not defined
