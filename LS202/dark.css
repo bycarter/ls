@@ -1,0 +1,112 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* MAIN CSS */
+
+/* Default Theme: Dark */
+:root {
+  color-scheme: dark;
+
+  /* Foundation */
+  --brand-hue: 200;
+  --brand-saturation: 100%;
+  --brand-lightness: 50%;
+
+  /* Dark Theme Custom Properties */
+  --brand: hsl(
+      var(--brand-hue), calc(var(--brand-saturation) / 2), calc(var(--brand-lightness) / 1.5)
+  );
+  --text1: hsl(var(--brand-hue), 15%, 85%);
+  --text2: hsl(var(--brand-hue), 5%, 65%);
+  --surface1: hsl(var(--brand-hue), 10%, 10%);
+  --surface2: hsl(var(--brand-hue), 10%, 15%);
+  --surface3: hsl(var(--brand-hue), 5%, 20%);
+  --surface4: hsl(var(--brand-hue), 5%, 25%);
+  --surface-shadow: hsl(var(--brand-hue), 50%, 3%);
+  --shadow-strength: .8;
+
+  /* Standardized Fonts */
+  --primary-font: "Helvetica, Arial, sans-serif";
+  --secondary-font: "Courier New, Courier, monospace";
+  --code-font: "Consolas, Monaco, monospace";
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-small: 12px;
+  --line-height: 1.5;
+}
+
+/* Class Selectors */
+.brand {
+  color: var(--brand);
+  background-color: var(--brand);
+  font-family: var(--primary-font);
+}
+
+.surface1 {
+  background-color: var(--surface1);
+  color: var(--text2);
+  font-family: var(--primary-font);
+}
+
+.surface2 {
+  background-color: var(--surface2);
+  color: var(--text2);
+  font-family: var(--primary-font);
+}
+
+.surface3 {
+  background-color: var(--surface3);
+  color: var(--text1);
+  font-family: var(--primary-font);
+}
+
+.surface4 {
+  background-color: var(--surface4);
+  color: var(--text1);
+  font-family: var(--primary-font);
+}
+
+.text1 {
+  color: var(--text1);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+}
+
+p.text1 {
+  font-weight: 200;
+}
+
+.text2 {
+  color: var(--text2);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height);
+}
