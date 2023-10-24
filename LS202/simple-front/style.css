@@ -1,0 +1,128 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* Universal Box Sizing with Inheritance */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* MAIN CSS */
+/* Setting font family to 'Inter var' */
+:root {
+  font-family: "Sono";
+  /*font-family: Sono, 'Inter', -apple-system, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
+}
+
+/*@supports (font-variation-settings: normal) {*/
+/*  :root {*/
+/*    font-family: Sono, 'Inter var', -apple-system, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
+/*  }*/
+/*}*/
+
+
+/* Theme colors */
+:root {
+  --hue: 188;
+  --sat: 100%;
+  --lit: 50%;
+
+  --surface: hsl(var(--hue), calc(var(--sat) / 2), calc(var(--lit) - 45%));
+  --surface2: hsl(var(--hue), 60%, 7%);
+  --surface3: hsl(var(--hue), 50%, 20%);
+
+  --text1: hsl(var(--hue), 15%, 73%);
+  --text2: hsl(var(--hue), 85%, 73%);
+}
+
+body {
+  background-color: var(--surface2);
+  color: var(--text1);
+  height: 100vh;
+}
+
+header {
+  background-color: var(--surface);
+  padding: .45rem;
+  /*position: fixed;*/
+}
+
+.title {
+  font-size: 20px;
+  color: var(--text1);
+  display: inline-block;
+  float: right;
+}
+
+.menu > a {
+  font-size: 14px;
+  height: calc(20px + .45rem);
+  line-height: calc(20px + .45rem); /* centering text in header */
+  padding-right: 10px;
+  padding-left: 10px;
+  text-decoration: none; /* removing link underline */
+  color: var(--text1);
+  display: inline-block;
+  float: left;
+  text-align: center;
+}
+
+.menu > a:hover, .menu > a:focus {
+  /*background-color: var(--surface2);*/
+  color: var(--text2);
+  font-weight: bold;
+}
+
+.menu > a:focus {
+  outline: var(--text1) dotted thin;
+}
+
+header::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+section {
+  padding: 1rem;
+}
+
+section > p {
+  margin-bottom: 1rem;
+}
+
+strong {
+  font-weight: bold;
+}

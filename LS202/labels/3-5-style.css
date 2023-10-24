@@ -30,41 +30,68 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+/* Universal Box Sizing with Inheritance */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 /* MAIN CSS */
 body {
-  width: 600px;
+  padding: 5px;
+}
+
+.background {
+  padding: .5rem 0.5rem 0.7rem 0.5rem;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 10pt;
+  line-height: 1rem;
+  width: 4in;
+  height: 3in;
+  outline: 1px solid black;
+}
+
+.multi {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  padding-right: 0.7rem;
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.footer {
+  position: absolute;
+  bottom: .5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
 }
 
 p {
-  font-size: 18px;
+  line-height: 0.7rem;
 }
 
-main li {
-  color: purple;
-  font-family: monospace;
+strong {
+  font-weight: 900;
 }
 
-header li {
-  color: blue;
-  font-family: Menlo;
-}
-
-a {
-  text-decoration: none;
-}
-
-article p {
-  color: brown;
-}
-
-.subheading {
-  background-color: #e0e0e0;
-}
-
-#intro {
-  font-size: 24px;
-}
-
-main ul li {
-  color: green;e
+img {
+  position: absolute;
+  bottom: .7in;
+  right: .06in;
+  margin: auto;
 }
