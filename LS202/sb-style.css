@@ -30,14 +30,34 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* MAIN CSS */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+<!-- HTML in your document's head -->
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sono">
+ */
+
+:root {
+  font-family: 'Inter', 'Sono', sans-serif;
+}
 
 /* Default Theme: Dark */
 :root {
   color-scheme: dark;
+  background-color: var(--surface1);
 
   /* Foundation */
-  --brand-hue: 200;
+  --brand-hue: 184;
   --brand-saturation: 100%;
   --brand-lightness: 50%;
 
@@ -47,7 +67,7 @@ footer, header, hgroup, menu, nav, section {
   );
   --text1: hsl(var(--brand-hue), 15%, 85%);
   --text2: hsl(var(--brand-hue), 5%, 65%);
-  --surface1: hsl(var(--brand-hue), 10%, 10%);
+  --surface1: hsl(var(--brand-hue), 70%, 6%);
   --surface2: hsl(var(--brand-hue), 10%, 15%);
   --surface3: hsl(var(--brand-hue), 5%, 20%);
   --surface4: hsl(var(--brand-hue), 5%, 25%);
@@ -109,4 +129,25 @@ p.text1 {
   color: var(--text2);
   font-size: var(--font-size-small);
   line-height: var(--line-height);
+}
+
+/* MAIN CSS */
+main {
+  font-size: 0;
+}
+
+figure {
+  display: inline-block;
+  margin: 50px 0;
+  padding: 0 50px;
+  width: calc(50% - 200px);
+}
+
+figcaption {
+  text-align: center;
+  font-size: 1rem;
+}
+
+img {
+  width: 100%;
 }

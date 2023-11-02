@@ -1,0 +1,36 @@
+/*
+<!-- HTML in your document's head -->
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sono">
+ */
+
+/*
+Cannonical:
+:root {
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+ }
+ */
+:root {
+  font-family: 'Inter', 'Sono', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', 'Sono', sans-serif;
+  }
+}
+
+
+/*
+Color Combos:
+  - font: #d1d4dc (white ish)
+  - font: #787b86 (gray green)
+  - font: #22ab94 (green)
+  - font: #f23645 (red)
+  - back: #131722 (dark blue)
+
+
+ */
