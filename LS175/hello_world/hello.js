@@ -2,8 +2,33 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const COUNTRY_DATA = [
+  {
+    path: "/english",
+    flag: "flag-usa.png",
+    alt: "US Flag",
+    title: "Go to English Site",
+  },
+  {
+    path: "/french",
+    flag: "flag-fr.png",
+    alt: "Drapeau de la france",
+    title: "Aller sur le site français",
+  },
+  {
+    path: "/serbian",
+    flag: "flag-sb.png",
+    alt: "Застава Србије",
+    title: "Идите на српски сајт",
+  },
+];
+const LANGUAGE_CODES = {
+  english: "en-US",
+  french: "fr-FR",
+  serbian: "sr-Cryl-rs",
+};
 
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 app.use(express.static("public")); // sets static assets folder
@@ -12,27 +37,26 @@ app.use(morgan("common")); //
 app.locals.currentPathClass = (path, currentPath) => {
   return path === currentPath ? "current" : "";
 };
-
 app.get("/", (req, res) => {
-  res.render("hello-world-english");
+  res.redirect("/english");
 });
-app.get("/english", (req, res) => {
-  res.render("hello-world-english", {
-    currentPath: req.path,
-    language: "en-US",
-  });
+app.get("/:language", (req, res, next) => {
+  const language = req.params.language;
+  const languageCode = LANGUAGE_CODES[language];
+  if (!languageCode) {
+    next(new Error(`Language not supported: ${language}`));
+  } else {
+    res.render(`hello-world-${language}`, {
+      countries: COUNTRY_DATA,
+      currentPath: req.path,
+      language: LANGUAGE_CODES[language],
+    });
+  }
 });
-app.get("/french", (req, res) => {
-  res.render("hello-world-french", {
-    currentPath: req.path,
-    language: "fr-FR",
-  });
-});
-app.get("/serbian", (req, res) => {
-  res.render("hello-world-serbian", {
-    currentPath: req.path,
-    language: "sr-Cyrl-rs",
-  });
+
+app.use((err, req, res, _next) => {
+  console.log(err);
+  res.status(404).send(err.message);
 });
 
 app.listen(3000, "localhost", () => {

@@ -1,36 +1,26 @@
 doctype html
 
 html(lang=language)
-	head
-		block page_title
-			title Hrr Site
-		meta(charset="UTF-8")
-		link(rel="stylesheet" href="/stylesheets/application.css")
-		script(src="/javascripts/application.js")
-	body.surface1
-		nav
-			ul
-				li
-					a(href="/english" class=currentPathClass("/english", currentPath))
-						img.flag(src="/images/flag-usa.png"
-							alt='US Flag'
-							title="Go to US Eng site")
-				li
-					a(href="/french" class=currentPathClass("/french", currentPath))
-						img.flag(src="/images/flag-fr.png"
-							alt="Drapeau de la france"
-							title="Aller sur le site français")
-				li
-					a(href="/serbian" class=currentPathClass("/serbian", currentPath))
-						img.flag(src="/images/flag-sb.png"
-							alt="Застава Србије"
-							title="Идите на српски сајт")
+  head
+    block page_title
+      title Hrr Site
+    meta(charset="UTF-8")
+    link(rel="stylesheet" href="/stylesheets/application.css")
+    script(src="/javascripts/application.js")
+  body.surface1
+    nav
+      ul
+        each country in countries
+          li
+            a(href=country.path
+              class=currentPathClass(country.path, currentPath))
+              img.flag(src=`/images/${country.flag}`
+                alt=country.alt
+                title=country.title)
 
-		header
-			block greeting
-				h1 Hurrlurr Wurll!
+    header
+      block greeting
+        h1 Hurrlurr Wurll!
 
-		main
-			block software_engineer
-
-
+    main
+      block software_engineer
