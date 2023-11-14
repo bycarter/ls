@@ -1,6 +1,7 @@
 This is my repo for everything Launch School.
 
 ### Timeline
+
 | Course |     Date      | Days |        Notes         |
 |--------|:-------------:|:----:|:--------------------:|
 | JS 100 | 2022, July 21 |  14  |                      |
@@ -12,4 +13,6 @@ This is my repo for everything Launch School.
 | JS 175 | 2023, Aug  07 |  02  | Aug 7 - 8 First Pass |
 | LS 180 | 2023, Aug  09 |  62  |  1 Week: Scale Proj  |
 | REVIEW | 2023, Oct  10 |  03  |  3 Days off +Review  |
-| LS 202 | 2023, Oct  16 |  ??  |                      |
+| LS 202 | 2023, Oct  16 |  15  |                      |
+| JS 175 | 2023, Oct  29 |  16  |     Proper Pass      |
+| JS 185 | 2023, Nov  13 |  ??  |                      |
