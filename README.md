@@ -16,3 +16,5 @@ This is my repo for everything Launch School.
 | LS 202 | 2023, Oct  16 |  15  |                      |
 | JS 175 | 2023, Oct  29 |  16  |     Proper Pass      |
 | JS 185 | 2023, Nov  13 |  ??  |                      |
+| JS 189 | 2024, Mar  26 | ~90  |                      |
+| LS 215 | 2024, - WIP - |  ??  |                      |
